@@ -1,13 +1,3 @@
-import { Request } from "express";
-
-export interface IAUser extends Request {
-    user: IUser
-}
-
-export interface IUser {
-    id: number
-}
-
 export interface card {
     name: string;
     id: string; // This is scryfall's ID system
