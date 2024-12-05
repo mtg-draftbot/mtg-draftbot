@@ -15,6 +15,7 @@ export async function updateLocalCardDatabase() {
   try {
     const lastSetResult = await pool.query(sqlText, [lastSet]);
     lastSetResult.rows[0] ? true : await fetchCardData(); // If we ain't got the data, let's go fetch it.
+    return true
   } catch (error) {
     throw new Error(
       `Error verifying and updating local card database: ${error}`
@@ -29,7 +30,7 @@ async function fetchCardData() {
     Accept: "application/json;q=0.9,*/*;q=0.8",
   };
   const linkToCardData = await axios.get(
-    "https://api.scryfall.com/bulk-data/default-cards",
+    "https://api.scryfall.com/bulk-data/unique-artwork",
     { headers }
   );
   // I don't exactly know why scryfall's api works like this, but let's roll with it.

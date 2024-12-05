@@ -17,7 +17,7 @@ export interface card {
   type_line: string; // Contains the type line from the card. Not sure if this is actually useful.
   set: string; // Which set this card is from.
   scryfall_uri: string; // Link to the scryfall page of a card.
-  rarity: string;
+  rarity: "common" | "uncommon" | "rare" | "special" | "mythic" | "bonus";
   cmc: number;
   colors: string[];
   mana_cost: string;
