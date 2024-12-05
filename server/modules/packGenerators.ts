@@ -7,6 +7,11 @@ export async function generateDraftBoosterPacks(set: string, gameId: number) {
   const dbRes = await pool.query(sqlText, [set]);
   const cards = dbRes.rows;
 
+  // Little error checking, if we don't have cards, then there's an issue.
+  if(!cards[0]){
+    throw new Error('Verify local database is updated.')
+  }
+
   // Now, filter them by rarity.
   const mythics = cards.filter((card: card) => (card.rarity = "mythic"));
   const rares = cards.filter((card: card) => (card.rarity = "rare"));

@@ -14,7 +14,8 @@ export async function updateLocalCardDatabase() {
   const sqlText = 'SELECT * FROM "cards" WHERE "set" = $1 LIMIT 1';
   try {
     const lastSetResult = await pool.query(sqlText, [lastSet]);
-    lastSetResult.rows[0] ? true : await fetchCardData(); // If we ain't got the data, let's go fetch it.
+    if (!lastSetResult.rows[0])
+      await fetchCardData(); // If we ain't got the data, let's go fetch it.
     return true
   } catch (error) {
     throw new Error(
@@ -55,7 +56,7 @@ CREATE TABLE "cards" (
     "colors" VARCHAR, 
     "mana_cost" VARCHAR, 
     "layout" VARCHAR );`
-);
+    );
     await Promise.all(
       cardData.data.map((card: card) => {
         const {
