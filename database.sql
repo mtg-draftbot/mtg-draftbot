@@ -20,3 +20,10 @@ CREATE TABLE "user" (
     "password" VARCHAR NOT NULL,
     "account_created" timestamptz DEFAULT NOW();
 )
+
+CREATE TABLE "active_draft" (
+    "id" SERIAL PRIMARY KEY,
+    "available_cards" INT[],
+    "drafted_cards" INT[],
+    "current_seat" INT
+)

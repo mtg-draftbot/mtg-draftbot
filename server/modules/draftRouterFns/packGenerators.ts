@@ -1,5 +1,5 @@
-import pool from "./pool.ts";
-import { card } from "../constants/types.ts";
+import pool from "../pool.ts";
+import { card } from "../../constants/types.ts";
 
 export async function generateDraftBoosterPacks(set: string, gameId: number) {
   // Grab the cards from our database

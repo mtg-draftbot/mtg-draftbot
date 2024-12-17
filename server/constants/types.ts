@@ -6,6 +6,8 @@ export interface IAUser extends Request {
 
 export interface IUser {
   id: number;
+  pod: number | null;
+  seat: number | null
 }
 
 export interface card {
