@@ -1,5 +1,5 @@
 // import './App.css'
-import CardDragDrop from './CardDragDrop.tsx' 
+import CardDragDrop from './components/CardDragDrop.tsx' 
 
 
 function App() {
