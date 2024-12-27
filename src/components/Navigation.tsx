@@ -14,9 +14,9 @@ export default function Navigation() {
         Home
       </NavLink>
 
-      <Link to="draft">Draft!</Link>
+      <Link to="draft">Draft</Link>
       <Link to="about">About Us</Link>
-      <Link to="collection">Vault</Link>
+      <Link to="vault">Vault</Link>
     </nav>
     // <>
     // im a nav bar
