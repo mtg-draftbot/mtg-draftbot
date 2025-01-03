@@ -1,6 +1,6 @@
 import { useDroppable } from '@dnd-kit/core';
-import Card from './Card'
-import { CardArea as CardAreaType, MTGCard } from './types';
+import Card from "./Card"
+import { CardArea as CardAreaType, MTGCard } from '../types';
 
 type CardAreaProps = {
   cardarea: CardAreaType;

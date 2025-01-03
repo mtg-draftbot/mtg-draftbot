@@ -1,5 +1,5 @@
 import { useDraggable } from '@dnd-kit/core';
-import { MTGCard } from './types';
+import { MTGCard } from '../types';
 
 type MTGCardProps = {
   card: MTGCard;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { MTGCard, CardArea as CardAreaType } from './types';
+import type { MTGCard, CardArea as CardAreaType } from '../types';
 import  CardArea  from './CardArea';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 
