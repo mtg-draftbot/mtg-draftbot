@@ -12,18 +12,19 @@ CREATE TABLE "cards" (
     "cmc" VARCHAR, 
     "colors" VARCHAR, 
     "mana_cost" VARCHAR, 
-    "layout" VARCHAR;)
+    "layout" VARCHAR
+);
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR NOT NULL,
     "password" VARCHAR NOT NULL,
-    "account_created" timestamptz DEFAULT NOW();
-)
+    "account_created" timestamptz DEFAULT NOW()
+);
 
 CREATE TABLE "active_draft" (
     "id" SERIAL PRIMARY KEY,
     "available_cards" INT[],
     "drafted_cards" INT[],
     "current_seat" INT
-)
+);

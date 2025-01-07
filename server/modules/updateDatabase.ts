@@ -15,7 +15,7 @@ export async function updateLocalCardDatabase() {
   try {
     const lastSetResult = await pool.query(sqlText, [lastSet]);
     if (!lastSetResult.rows[0]) await fetchCardData(); // If we ain't got the data, let's go fetch it.
-    return true;
+    return
   } catch (error) {
     throw new Error(
       `Error verifying and updating local card database: ${error}`

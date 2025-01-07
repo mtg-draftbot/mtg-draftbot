@@ -1,10 +1,10 @@
 // No changes should be required in this file
 
 import expressSession from 'express-session';
-const PgSession = require('connect-pg-simple')(expressSession);
+import connect from 'connect-pg-simple'
 import pool from './pool';
 import warnings from '../constants/warnings';
-
+const PgSession = connect(expressSession)
 /*
   The session makes it so a user can enters their username and password one time,
   and then we can keep them logged in. We do this by giving them a really long random string
@@ -28,7 +28,7 @@ const serverSessionSecret = () => {
   return process.env.SERVER_SESSION_SECRET;
 };
 
-let pruneSessionInterval:any = 60;
+let pruneSessionInterval:number|false = 60;
 if (process.env.NODE_ENV === 'test') {
     pruneSessionInterval = false;
 }
