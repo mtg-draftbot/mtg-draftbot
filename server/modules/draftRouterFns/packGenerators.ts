@@ -1,7 +1,7 @@
 import pool from "../pool.ts";
 import { card } from "../../constants/types.ts";
 
-export async function generateDraftBoosterPacks(set: string, gameId: number) {
+export async function generateDraftBoosterPacks(set: string) {
   // Grab the cards from our database
   const sqlText = `SELECT * FROM "cards" WHERE "set" = $1`;
   const dbRes = await pool.query(sqlText, [set]);
@@ -30,7 +30,7 @@ export async function generateDraftBoosterPacks(set: string, gameId: number) {
   // For now, we're pretending that all sets play by the same rules. This will be updated later.
 
   const packs = new Array(8); // Make an empty array 8 long, since there'll be 8 packs.
-  const newPacks = packs.map((pack: any) => {
+  const newPacks = packs.map(() => {
     // For the rare, there's a chance it's a  mythic... about a 1/8. So, we can do a quick generate based on that.
     const generatedRare =
       getRandomArbitrary(0, 100) > 12.5

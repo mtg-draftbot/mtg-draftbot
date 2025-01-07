@@ -14,9 +14,8 @@ export async function updateLocalCardDatabase() {
   const sqlText = 'SELECT * FROM "cards" WHERE "set" = $1 LIMIT 1';
   try {
     const lastSetResult = await pool.query(sqlText, [lastSet]);
-    if (!lastSetResult.rows[0])
-      await fetchCardData(); // If we ain't got the data, let's go fetch it.
-    return true
+    if (!lastSetResult.rows[0]) await fetchCardData(); // If we ain't got the data, let's go fetch it.
+    return true;
   } catch (error) {
     throw new Error(
       `Error verifying and updating local card database: ${error}`
@@ -37,7 +36,7 @@ async function fetchCardData() {
   // I don't exactly know why scryfall's api works like this, but let's roll with it.
   const downloadUri = linkToCardData.data.download_uri;
   const cardData = await axios.get(downloadUri, { headers });
-  let connection: PoolClient = await pool.connect();
+  const connection: PoolClient = await pool.connect();
   try {
     await connection.query("BEGIN;");
     await connection.query('DROP TABLE IF EXISTS "cards";');
@@ -55,8 +54,7 @@ CREATE TABLE "cards" (
     "cmc" VARCHAR, 
     "colors" VARCHAR, 
     "mana_cost" VARCHAR, 
-    "layout" VARCHAR );`
-    );
+    "layout" VARCHAR );`);
     await Promise.all(
       cardData.data.map((card: card) => {
         const {

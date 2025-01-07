@@ -11,7 +11,7 @@ export async function handleDraft(req: ReqWithPod, res: Response) {
   // Grab the current draft state.
   // Make sure the seat is a number. Don't need weird JS errors
   const seat = Number(req.seat);
-  const user = req.user;
+  // const user = req.user;
   const draft = req.params.id;
   const sqlText = `SELECT * FROM "active_draft" WHERE "id" = $1`;
   try {
@@ -60,7 +60,7 @@ export async function attachPod(
     const podRes = await pool.query(sqlText, [draft]);
     const pods = podRes.rows;
     if (pods[0]) {
-      for (let key in pods[0]) {
+      for (const key in pods[0]) {
         if ((pods[0][key] = req.user.id)) {
           req["seat"] = key;
           next();
