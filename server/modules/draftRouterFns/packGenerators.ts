@@ -8,8 +8,8 @@ export async function generateDraftBoosterPacks(set: string) {
   const cards = dbRes.rows;
 
   // Little error checking, if we don't have cards, then there's an issue.
-  if(!cards[0]){
-    throw new Error('Verify local database is updated.')
+  if (!cards[0]) {
+    throw new Error("Verify local database is updated.");
   }
 
   // Now, filter them by rarity.
@@ -29,7 +29,7 @@ export async function generateDraftBoosterPacks(set: string) {
   // Generating packs depends on which set we're on... because things can't be easy, can they?
   // For now, we're pretending that all sets play by the same rules. This will be updated later.
 
-  const packs = new Array(8); // Make an empty array 8 long, since there'll be 8 packs.
+  const packs = Array.of(1, 2, 3, 4, 5, 6, 7, 8); // Make an empty array 8 long, since there'll be 8 packs.
   const newPacks = packs.map(() => {
     // For the rare, there's a chance it's a  mythic... about a 1/8. So, we can do a quick generate based on that.
     const generatedRare =
@@ -60,7 +60,12 @@ export async function generateDraftBoosterPacks(set: string) {
 
     // And the basic that nobody wants.
     const generatedBasicLand = basicLands[getRandomInt(0, basicLands.length)];
-
+    console.log(
+      "the generated pack is: ",
+      generatedRare,
+      generatedCommons,
+      generatedUncommons
+    );
     // Now return it, because this is a callback function.
     return [
       generatedRare,
@@ -69,6 +74,7 @@ export async function generateDraftBoosterPacks(set: string) {
       generatedBasicLand,
     ];
   });
+  console.log(newPacks);
   return newPacks;
 }
 

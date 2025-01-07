@@ -10,6 +10,7 @@ import passport from "./strategies/user.strategy";
 // Route Includes
 import userRouter from "./routes/user.router";
 import { updateLocalCardDatabase } from "./modules/updateDatabase";
+import { generateDraftBoosterPacks } from "./modules/draftRouterFns/packGenerators";
 
 // Express Middleware
 app.use(express.json());
@@ -38,6 +39,12 @@ app.put("/api/update", async (req, res) => {
     res.sendStatus(500);
   }
 });
+//Testing Route for generating random packs.
+app.get('/api/test', async (req, res)  => {
+  const resData = await generateDraftBoosterPacks('blb')
+  res.send(resData[0])
+})
+
 // Listen Server & Port
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
