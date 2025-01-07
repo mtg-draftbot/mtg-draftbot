@@ -1,7 +1,8 @@
 import passport from 'passport';
-const LocalStrategy = require('passport-local').Strategy;
+import passportLocal from 'passport-local'
 import encryptLib from '../modules/encryption';
 import pool from '../modules/pool';
+const LocalStrategy = passportLocal.Strategy
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
